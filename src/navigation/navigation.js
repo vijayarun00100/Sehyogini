@@ -7,7 +7,7 @@ const Navigation = () => {
     return (
         <div className="flex h-20 w-full bg-white fixed z-50">
             <img src={Logo} alt='' className=" h-16 ml-1 p-3" />
-            <div className="absolute top-[32%] left-[29%] flex flex-row justify-center items-center font-medium text-lg">
+            <div className="absolute top-[17%] left-[29%] flex flex-row justify-center items-center font-medium text-lg">
                 <a href="" className="flex ml-5 hover:text-theme mr-32">community</a>
                 <a href="" className="flex ml-5 hover:text-theme mr-32">voices</a>
                 <a href="" className="flex ml-5 hover:text-theme mr-32">opportunities</a>
