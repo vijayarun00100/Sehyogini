@@ -49,31 +49,31 @@ const community = () => {
     return(
         <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className="w-full h-full flex relative">
-                <section className="w-64 fixed flex flex-col h-[85%] bg-white mt-24 ml-3 rounded-xl ">
-                <div className="flex flex-row">
-                    <img src={Logo} alt='logo' className="h-16 p-5 " />
-                    <button>
-                        <HiMenuAlt2 className=" w-8 h-8 ml-12"/>
-                    </button>
-                    
-                </div>
-                    {
-                        icons.map((item) => (
-                            <button
-                            className="text-black flex items-start justify-start space-x-4 rounded-xl p-3 hover:bg-theme hover:w-64"
-                            href={`./${item.title.toLowerCase()}`}
-                            key={item.title} 
-                            >
-                            <div>
-                                <item.icon className="w-8 h-6"/>
-                            </div>
-                            <div className="text-md font-medium">
-                                {item.title}
-                            </div>
-                            </button>
-                        ))
-                    }
-                    <div className="bg-user w-full h-12 float-end mt-auto rounded-sm flex flex-row space-x-5 p-2">
+                <section className="w-64 fixed flex flex-col h-[87%] bg-white mt-24 ml-3 rounded-xl ">
+                    <div className="flex flex-row">
+                        <img src={Logo} alt='logo' className="h-16 p-5" />
+                        <button>
+                            <HiMenuAlt2 className=" w-8 h-8 ml-12"/>
+                        </button>
+
+                    </div>
+                        {
+                            icons.map((item) => (
+                                <button
+                                className="text-black flex items-start justify-start space-x-4 rounded-xl p-3 hover:bg-theme hover:w-64"
+                                href={`./${item.title.toLowerCase()}`}
+                                key={item.title} 
+                                >
+                                <div>
+                                    <item.icon className="w-8 h-6"/>
+                                </div>
+                                <div className="text-md font-medium">
+                                    {item.title}
+                                </div>
+                                </button>
+                            ))
+                        }
+                    <div className="bg-user w-full h-16 float-end mt-auto rounded-sm flex flex-row space-x-5 p-2">
                         <button>
                             <img src={User} alt='' className="rounded-full"/>
                         </button>
@@ -88,8 +88,12 @@ const community = () => {
                         </div>
                     </div>
                 </section>
-                <main></main>
-                <section></section>
+                <main>
+
+                </main>
+                <section>
+
+                </section>
 
             </div>
         </div>
