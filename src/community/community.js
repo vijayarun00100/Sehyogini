@@ -11,7 +11,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { HiMenuAlt2 } from "react-icons/hi";
 import Logo from '../images/vector.svg';
 import User from '../images/user.png';
-import { FaRegComment } from "react-icons/fa";
+import { GoComment } from "react-icons/go";
 import { FcLikePlaceholder } from "react-icons/fc"; //before like 
 import { FcLike } from "react-icons/fc"; //after like
 
@@ -89,31 +89,13 @@ const aloo = [
     }
 ]
 
-const posts = [
-    {
-        name:'aloo',
-        post:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        like:10,
-        comments:'bai',
-
-    },
-    {
-        name:'aloo tikki',
-        post:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        like:10,
-        comments:'bai'
-    },
-]
-
-
-
-
 
 class community extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             posts:[],
+            showComments: false,
         };
     }
 
@@ -137,9 +119,18 @@ class community extends React.Component{
             console.error('Error fetching posts:', error);
         }
     }
+
+    toggleComments = () => {
+        this.setState(prevState => ({
+            showComments: !prevState.showComments,
+        }));
+    }
+
+
+   
     render(){
-        const { posts } = this.state;
-        console.log("Posts:", posts); // Add this line
+        const { posts , showComments} = this.state;
+        console.log("Posts:", posts);
         return(
             <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
                 <div className=" w-full h-full flex relative">
@@ -151,11 +142,11 @@ class community extends React.Component{
                             </button>
                         </div>
                             {
-                                icons.map((item) => (
+                                icons.map((item,index) => (
                                     <button
                                     className="text-black flex items-start justify-start space-x-4 rounded-xl p-3 hover:bg-theme hover:text-white hover:w-64"
                                     href={`./${item.title.toLowerCase()}`}
-                                    key={item.title} 
+                                    key={index} 
                                     >
                                     <div>
                                         <item.icon className="w-8 h-6"/>
@@ -193,8 +184,8 @@ class community extends React.Component{
                         
                     <div className=" w-auto flex flex-col">
                         {
-                            posts.map((data) => (
-                                    <div className="w-full h-fit mb-10" key={data.name}>
+                            posts.map((data,index) => (
+                                    <div className="w-full h-fit mb-10" key={index}>
                                     <div className="w-full bg-white h-fit rounded-xl p-5">
                                         <div className="flex flex-row">
                                             <div className="flex rounded-full bg-sky-400 w-10 h-10">
@@ -208,18 +199,46 @@ class community extends React.Component{
                                             {data.content}
                                         </div>
                                         <div className="flex flex-row justify-center items-center">
-                                            <div className="mr-auto mt-4">
-                                                <FaRegComment className="w-7 h-7"/>
+                                            <div className="mr-auto mt-4 flex flex-row">
+                                                <button onClick={this.toggleComments}>
+                                                    <GoComment className="w-7 h-7"/>
+                                                </button>
+                                                <div className="mt-1 ml-2">
+                                                    {data.comments.length}
+                                                </div>
+                                                
                                             </div>
-                                            <div className="flex mt-4">
-                                                <FcLikePlaceholder className="w-8 h-8"/>
+                                            <div className="flex flex-row mt-4 mr-5">
+                                                <button>
+                                                    <FcLikePlaceholder className="w-8 h-8"/>
+                                                </button>
+                                                <div className="mt-1 ml-3">
+                                                    {data.likes.length}
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div className="flex justify-start flex-col items-start" style={{ opacity: showComments ? 1 : 0, height: showComments ? "auto" : 0 }}>
+                                            { 
+                                            data.comments.map((comment, index) => (
+                                               data.comments.length >=1 && (
+                                                    <div key={index}>
+                                                        <div className="flex flex-col pb-10 mt-10">
+                                                            <div>
+                                                                {comment.name}
+                                                            </div>
+                                                            <div>
+                                                                {comment.comment}
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                )
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             ))
                             }
-                            
+
                     </div>
                         
                     </main>
