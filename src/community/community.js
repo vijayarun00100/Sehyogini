@@ -91,6 +91,7 @@ const aloo = [
 
 const Community = () => {
     const [posts, setPosts] = useState([]);
+    const [like, setLike] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -111,7 +112,8 @@ const Community = () => {
         };
 
         fetchData();
-    }, []);
+    }, [like]);
+
 
     const toggleComments = (index) => {
         const newPosts = [...posts];
@@ -126,6 +128,7 @@ const Community = () => {
         });
     };
 
+    
     const handleLike = async (index) => {
         const newPosts = [...posts];
         newPosts[index].liked = !newPosts[index].liked;
@@ -137,21 +140,20 @@ const Community = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ postId: posts[index].id }) // Assuming each post has an 'id' property
+                body: JSON.stringify({ post: posts[index]._id, name: posts[index].name }) // Assuming each post has an 'id' property
+                
             });
-
+            setLike(newPosts[index].liked);
             if (!response.ok) {
                 throw new Error('Failed to update like count');
             }
-
-            // You can optionally update the like count based on the response from the server
         } catch (error) {
             console.error('Error updating like count:', error);
         }
     };
 
     return (
-        <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
+        <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black no-scrollbar">
             <div className=" w-full h-full flex relative">
                 <section className="w-64 fixed flex flex-col h-[87%] bg-white mt-24 ml-3 rounded-xl z-10 ">
                     <div className="flex flex-row">
@@ -253,7 +255,7 @@ const Community = () => {
                         ))}
                     </div>
                 </main>
-                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10 hover:overflow-y-auto hover:no-scrollbar">
+                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10 hover:overflow-y-auto no-scrollbar">
                     {aloo.map((item, index) => (
                         <div className="w-full h-24 text-black rounded-xl mt-4 flex flex-col p-5" key={index} >
                             <div className="flex rounded-full bg-sky-400 w-14 h-14">
