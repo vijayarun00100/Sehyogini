@@ -93,6 +93,7 @@ const aloo = [
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [like, setLike] = useState(false);
+    const [latest , setLatest] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -112,7 +113,7 @@ const Community = () => {
         };
 
         fetchData();
-    }, [like]);
+    }, [like,latest]);
 
 
     const toggleComments = (index) => {
@@ -198,8 +199,8 @@ const Community = () => {
                     <h1 className=" fixed right-36 top-24 text-reqtext text-2xl">Featured Blogs</h1>
                     <div className="flex justify-center items-center mt-20 mb-10">
                         <div className="w-80 h-12 grid grid-cols-2 bg-white text-md font-medium fixed stick backdrop-blur rounded-3xl bg-black/10 z-50">
-                            <button id="scroller" className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl" onClick={handleScroll}>Latest</button>
-                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl">Top</button>
+                            <button id="scroller" className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl" onClick={() => {setLatest(!latest) ; handleScroll() ;}}>Latest</button>
+                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl" onClick={handleScroll}>Top</button>
                         </div>
                     </div>
                     <div className="w-auto flex flex-col">
