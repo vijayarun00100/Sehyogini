@@ -3,7 +3,7 @@ import Community from './community/community'
 import Navigation from './navigation/navigation';
 function App() {
   return (
-    <div className="App hover:overflow-y-scroll overflow-y-hidden no-scrollbar">
+    <div className="App ">
       <Navigation />
       <Community />
     </div>

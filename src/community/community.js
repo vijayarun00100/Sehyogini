@@ -15,6 +15,7 @@ import { GoComment } from "react-icons/go";
 import { FcLikePlaceholder } from "react-icons/fc"; //before like 
 import { FcLike } from "react-icons/fc"; //after like
 
+
 const icons = [
     {
         title:'Search',
@@ -92,7 +93,6 @@ const aloo = [
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [like, setLike] = useState(false);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -122,11 +122,13 @@ const Community = () => {
     };
 
     const handleScroll = () => {
-        window.scrollTo({
+        window.scroll({
             top: 0,
-            behavior: 'smooth'
+            behavior: "smooth"
         });
     };
+
+
 
     
     const handleLike = async (index) => {
@@ -153,7 +155,7 @@ const Community = () => {
     };
 
     return (
-        <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black no-scrollbar">
+        <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className=" w-full h-full flex relative">
                 <section className="w-64 fixed flex flex-col h-[87%] bg-white mt-24 ml-3 rounded-xl z-10 ">
                     <div className="flex flex-row">
@@ -196,8 +198,7 @@ const Community = () => {
                     <h1 className=" fixed right-36 top-24 text-reqtext text-2xl">Featured Blogs</h1>
                     <div className="flex justify-center items-center mt-20 mb-10">
                         <div className="w-80 h-12 grid grid-cols-2 bg-white text-md font-medium fixed stick backdrop-blur rounded-3xl bg-black/10 z-50">
-                            <button className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl"
-                                    onClick={handleScroll}>Latest</button>
+                            <button id="scroller" className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl" onClick={handleScroll}>Latest</button>
                             <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl">Top</button>
                         </div>
                     </div>
@@ -255,7 +256,7 @@ const Community = () => {
                         ))}
                     </div>
                 </main>
-                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10 hover:overflow-y-auto no-scrollbar">
+                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10  hover:overflow-y-auto no-scrollbar">
                     {aloo.map((item, index) => (
                         <div className="w-full h-24 text-black rounded-xl mt-4 flex flex-col p-5" key={index} >
                             <div className="flex rounded-full bg-sky-400 w-14 h-14">
