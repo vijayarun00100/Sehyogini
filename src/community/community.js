@@ -97,9 +97,14 @@ const Community = (props) => {
     const [latest , setLatest] = useState(false);
     const [comment , setComment] = useState(false);
     const [top ,settop] =useState(false);
+    const [loggedusername , setloggedusername] = useState('');
     const [post , setpost ] = useState(false);
     const [commnet_content, setComment_content] = useState('');
     const [post_content , setpost_content] = useState('');  
+   
+    const loggeduserid = localStorage.getItem('userid');
+    
+   
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -120,8 +125,20 @@ const Community = (props) => {
         };
         fetchData();
     }, [like,latest , comment,post]);
+    
 
-    const loggeduserid = localStorage.getItem('userid');
+
+    useEffect(() => {
+        const username = async () => {
+            const response = await fetch(`https://sehyogini.onrender.com/api/getUserByID/${loggeduserid}`);
+            const responseData = await response.json();
+            const username = responseData;
+            setloggedusername(username.user.name)
+        };
+        username();
+       },[])
+
+
     const toggleComments = (index) => {
         const newPosts = [...posts];
         newPosts[index].showComments = !newPosts[index].showComments;
@@ -184,7 +201,7 @@ const Community = (props) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    name: 'Salman',
+                    name: loggedusername,
                     post: id,
                     comment:commnet_content
                 })
@@ -208,7 +225,7 @@ const Community = (props) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    author: 'Gopal',
+                    author: loggedusername,
                     title:'second post',
                     authorID:loggeduserid,
                     content:post_content,

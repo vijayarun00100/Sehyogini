@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <div className="App hover:overflow-y-scroll hover:no-scrollbar">
+      <div className="App">
         <Routes>
           <Route path="/community" element={<Community />} />
           <Route path="/opportunities" element={<Opportunities />} />

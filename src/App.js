@@ -12,7 +12,7 @@ const App = (props) => {
     
     <div>
       <Router>
-      <div className="App hover:overflow-y-scroll hover:no-scrollbar">
+      <div className="App">
         <Navigation />
         <Routes>
           <Route path="/community" element={<Community />} />
