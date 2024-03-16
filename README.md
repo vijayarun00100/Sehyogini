@@ -61,10 +61,10 @@ To get started with Project Single Mother:
 
 Meet the amazing contributors who have contributed to this project:
 
-1. Vijay Arun ([@alice_smith](https://github.com/vijayarun00100))
-2. Ayush Tiwari ([@bob_johnson](https://github.com/ayushtiw))
-3. Yash Sharma ([@carol_williams](https://github.com/thedevyash))
-4. Aditya Shandilya ([@david_brown](https://github.com/adityagaz))
+1. Vijay Arun ([@Vijay_Arun](https://github.com/vijayarun00100))
+2. Ayush Tiwari ([@Ayush_Tiwari](https://github.com/ayushtiw))
+3. Yash Sharma ([@Yash_Sharma](https://github.com/thedevyash))
+4. Aditya Shandilya ([@Aditya_Shandilya](https://github.com/adityagaz))
 
 ## Contributing 🤝
 
