@@ -1,7 +1,9 @@
 import React from 'react';
-
+import Navigation from '../navigation/navigation';
 const PodcastPage = () => {
   return (
+    <>
+    <Navigation />
     <div className="bg-gray-100 min-h-screen mt-20">
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-4">Featured Podcasts</h2>
@@ -23,6 +25,7 @@ const PodcastPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

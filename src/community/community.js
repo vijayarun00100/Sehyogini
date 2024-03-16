@@ -14,7 +14,7 @@ import User from '../images/user.png';
 import { GoComment } from "react-icons/go";
 import { FcLikePlaceholder } from "react-icons/fc"; //before like 
 import { FcLike } from "react-icons/fc"; //after like
-
+import Navigation from '../navigation/navigation';
 
 const icons = [
     {
@@ -90,15 +90,16 @@ const aloo = [
     }
 ];
 
-const Community = () => {
+const Community = (props) => {
     const [posts, setPosts] = useState([]);
+    console.log(props);
     const [like, setLike] = useState(false);
     const [latest , setLatest] = useState(false);
     const [comment , setComment] = useState(false);
+    const [top ,settop] =useState(false);
     const [post , setpost ] = useState(false);
     const [commnet_content, setComment_content] = useState('');
     const [post_content , setpost_content] = useState('');  
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -117,11 +118,10 @@ const Community = () => {
                 console.error('Error fetching posts:', error);
             }
         };
-
         fetchData();
     }, [like,latest , comment,post]);
 
-
+    const loggeduserid = localStorage.getItem('userid');
     const toggleComments = (index) => {
         const newPosts = [...posts];
         newPosts[index].showComments = !newPosts[index].showComments;
@@ -158,7 +158,7 @@ const Community = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    name: '65f46f485dff06b2670d8f7d',
+                    name:loggeduserid,
                     post: id
                 })
             });
@@ -210,7 +210,7 @@ const Community = () => {
                 body: JSON.stringify({ 
                     author: 'Gopal',
                     title:'second post',
-                    authorID:'65f46f485dff06b2670d8f7d',
+                    authorID:loggeduserid,
                     content:post_content,
                     comments:[],
                     likes:[]
@@ -226,6 +226,8 @@ const Community = () => {
     };
 
     return (
+        <>
+        <Navigation />
         <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className=" w-full h-full flex relative">
                 <section className="w-64 fixed flex flex-col h-[87%] bg-white mt-24 ml-3 rounded-xl z-10 ">
@@ -281,7 +283,7 @@ const Community = () => {
                     <div className="flex justify-center items-center mt-20 mb-10">
                         <div className="w-80 h-12 grid grid-cols-2 bg-white text-md font-medium fixed stick backdrop-blur rounded-3xl bg-black/10 z-50">
                             <button id="scroller" className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl" onClick={() => {setLatest(!latest) ; handleScroll() ;}}>Latest</button>
-                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl">Top</button>
+                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl" onClick={() => {settop(!latest) ; handleScroll() ;}}>Top</button>
                         </div>
                     </div>
                     <div className="w-auto flex flex-col">
@@ -339,7 +341,7 @@ const Community = () => {
                         ))}
                     </div>
                 </main>
-                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10  hover:overflow-y-auto no-scrollbar">
+                <section className=" bg-white w-72 rounded-xl text-black h-[80%] top-36 right-3 flex flex-col fixed z-10">
                     {aloo.map((item, index) => (
                         <div className="w-full h-24 text-black rounded-xl mt-4 flex flex-col p-5" key={index} >
                             <div className="flex rounded-full bg-sky-400 w-14 h-14">
@@ -357,6 +359,7 @@ const Community = () => {
                 </section>
             </div>
         </div>
+        </>
     );
 };
 

@@ -1,4 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
+import Navigation from '../navigation/navigation';
 import React, { useState, useEffect } from "react";
 
 const Opportunities = () => {
@@ -21,6 +22,7 @@ const Opportunities = () => {
 
   return (
     <div>
+        <Navigation />
       {console.log("scheme here ", typeof scheme)}
 
       <div class="container w-full mx-auto mt-10">
