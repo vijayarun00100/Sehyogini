@@ -12,39 +12,91 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import Logo from '../images/vector.svg';
 import User from '../images/user.png';
 import { GoComment } from "react-icons/go";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc"; //before like 
+import { FcLike } from "react-icons/fc"; //after like
+
 
 const icons = [
-    { title:'Search', icon:CiSearch },
-    { title:'Dashboard', icon:RxDashboard },
-    { title:'User', icon:LuUser2 },
-    { title:'Message', icon: BiMessageAltDetail },
-    { title:'Podcast', icon:CiMicrophoneOn },
-    { title:'Community', icon:RiGroupLine },
-    { title:'Saved', icon: IoHeartOutline },
-    { title:'Settings', icon:IoSettingsOutline }
+    {
+        title:'Search',
+        icon:CiSearch
+    },
+    {
+        title:'Dashboard',
+        icon:RxDashboard
+    },
+    {
+        title:'User',
+        icon:LuUser2
+    },
+    {
+        title:'Message',
+        icon: BiMessageAltDetail
+    },
+    {
+        title:'Podcast',
+        icon:CiMicrophoneOn
+    },
+    {
+        title:'Community',
+        icon:RiGroupLine
+    },
+    {
+        title:'Saved',
+        icon: IoHeartOutline
+    },
+    {
+        title:'Settings',
+        icon:IoSettingsOutline
+    }
 ];
 
 const aloo = [
-    { title:"aloo", about:"empowering women" },
-    { title:"aloo bada", about:"empowering women" },
-    { title:"aloo bada1", about:"empowering women" },
-    { title:"aloo bada2", about:"empowering women" },
-    { title:"aloo bada3", about:"empowering women" },
-    { title:"aloo bada4", about:"empowering women" },
-    { title:"aloo bada5", about:"empowering women" },
-    { title:"aloo bada6", about:"empowering women" },
-    { title:"aloo bada7", about:"empowering women" }
+    {
+        title:"aloo",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada1",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada2",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada3",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada4",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada5",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada6",
+        about:"empowering women"
+    },
+    {
+        title:"aloo bada7",
+        about:"empowering women"
+    }
 ];
 
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [like, setLike] = useState(false);
-    const [id, setId] = useState('');
     const [latest , setLatest] = useState(false);
-    const [demo , setdemo] = useState(false);
-    const [comment , setcomment] = useState('');
+    const [comment , setComment] = useState(false);
+    const [commnet_content, setComment_content] = useState('');
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -54,17 +106,10 @@ const Community = () => {
                 }
                 const responseData = await response.json();
                 const { posts } = responseData;
-
-                posts.map((data)=>{
-                    data.likes.map((data)=>{
-                            data.name.includes("65f471f45dff06b2670d90as")? setdemo(true) : console.log(false)
-                        })  
-                })
-
-                
                 if (!Array.isArray(posts)) {
                     throw new Error('Invalid data format: posts is not an array');
                 }
+                // setLike(like => !like)
                 setPosts(posts.map(post => ({ ...post, liked: false })));
             } catch (error) {
                 console.error('Error fetching posts:', error);
@@ -72,10 +117,9 @@ const Community = () => {
         };
 
         fetchData();
-    }, [like, latest]);
+    }, [like,latest , comment]);
 
 
-    
     const toggleComments = (index) => {
         const newPosts = [...posts];
         newPosts[index].showComments = !newPosts[index].showComments;
@@ -89,7 +133,12 @@ const Community = () => {
         });
     };
 
-    const handleLike = async (index, id) => {
+    const handleInputChange = (event) => {
+        setComment_content(event.target.value);
+    };
+
+    
+    const handleLike = async (index,id) => {
         const newPosts = [...posts];
         newPosts[index].liked = !newPosts[index].liked;
         setPosts(newPosts);
@@ -100,47 +149,46 @@ const Community = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    name: '65f471f45dff06b2670d90as',
+                    name: '65f46f485dff06b2670d8f7d',
                     post: id
                 })
             });
-            
             setLike(newPosts[index].liked);
-            setId(id);
-            
-            newPosts[index].likes.map((data)=>{
-                data.name.includes("65f4722a5dff06b2670d90as")? setdemo(true) : setdemo(false)
-                
-            })
-            
             if (!response.ok) {
                 throw new Error('Failed to update like count');
             }
         } catch (error) {
             console.error('Error updating like count:', error);
         }
+    
     };
 
 
-    const handleComment = async() => {
-        try{
-            const response = await fetch('https://sehyogini.onrender.com/api/do-comment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        name: 'Priya',
-                        post: id,
-                        comment:'Awsome'
-                    })
-                });
-            }catch(err){
-                console.log("comments not able to send!");
-            }
-    }
 
-    
+    const handleComments = async (index,id) => {
+        const newPosts = [...posts];
+
+        try {
+            const response = await fetch('https://sehyogini.onrender.com/api/do-comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    name: 'Salman',
+                    post: id,
+                    comment:commnet_content
+                })
+            });
+            commnet_content= '';
+            if (!response.ok) {
+                throw new Error('Failed to update comment count');
+            }
+        } catch (error) {
+            console.error('Error updating comments', error);
+        }
+    };
+
     return (
         <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className=" w-full h-full flex relative">
@@ -182,25 +230,16 @@ const Community = () => {
                 </section>
                 <main className="ml-[289px] w-full h-auto mr-80 mt-28 rounded-xl text-black">
                     <h1 className="text-2xl text-reqtext">POSTS</h1>
-
                     <div className=" bg-slate-400/10 w-full h-44 rounded-xl mt-6">
                         <div>
                             <textarea type="text" className="bg-slate-200/10 w-[93%] h-36 rounded-xl mt-4 ml-8 border-none p-3" placeholder="start typing ... " />
                         </div>  
                     </div>
-                    <div className="flex justify-center items-center mt-2">
-                        {posts.map((data,index) => (
-                            <button class="bg-transparent hover:bg-theme text-theme  font-semibold hover:text-white py-2 px-4 border border-theme hover:border-transparent rounded" onClick={handleComment(index,data._id)}>
-                                Post
-                            </button>
-                        ))}
-                           
-                    </div>
                     <h1 className=" fixed right-36 top-24 text-reqtext text-2xl">Featured Blogs</h1>
-                    <div className="flex justify-center items-center mt-10 mb-10">
-                        <div className="w-80 h-12 grid grid-cols-2 bg-white text-md font-medium fixed stick backdrop-blur-md rounded-3xl bg-black/10 z-50">
+                    <div className="flex justify-center items-center mt-20 mb-10">
+                        <div className="w-80 h-12 grid grid-cols-2 bg-white text-md font-medium fixed stick backdrop-blur rounded-3xl bg-black/10 z-50">
                             <button id="scroller" className="hover:border-solid hover:border-slate-300 hover:border-2 hover:text-theme rounded-3xl" onClick={() => {setLatest(!latest) ; handleScroll() ;}}>Latest</button>
-                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl" onClick={handleScroll}>Top</button>
+                            <button className="hover:border-solid hover:border-gray-400 hover:border-2 hover:text-theme rounded-3xl">Top</button>
                         </div>
                     </div>
                     <div className="w-auto flex flex-col">
@@ -226,12 +265,9 @@ const Community = () => {
                                             </div>
                                         </div>
                                         <div className="flex flex-row">
-                                        <button onClick={() => handleLike(index, data._id)}>
-                                            {
-                                                demo?<FcLike className="w-8 h-8 mb-1" /> : <FcLikePlaceholder className="w-8 h-8 mb-1" />
-                                            }
-                                        </button>
-
+                                            <button onClick={() => {handleLike(index,data._id)}}>
+                                                {data.liked ? <FcLike className="w-8 h-8  mb-1" /> : <FcLikePlaceholder className="w-8 h-8  mb-1" />}
+                                            </button>
                                             <div className="ml-3 mt-1">
                                                 {data.likes.length}
                                             </div>
@@ -249,11 +285,13 @@ const Community = () => {
                                         ) : (
                                             <div className="flex justify-center items-center">No comments</div>
                                         )}
+                                        
                                     </div>
-                                    <div className="flex flex-row mt-2 rounded-2xl justify-center items-center">
-                                            <input type="text" placeholder="Add a comment" className=" h-24 rounded-2xl px-2 py-1 w-[60%] outline-none focus:border-gray-500" />
-                                            <button className="ml-2 bg-blue-500 text-white px-3 py-1  hover:bg-blue-600 rounded-2xl p-3">Post</button>
+                                    <div className="flex flex-row mt-2 rounded-2xl justify-center items-center ">
+                                            <input type="text" placeholder="Add a comment" className=" h-20 rounded-2xl px-2 py-1 w-[60%] outline-none focus:border-gray-500 placeholder:text-black"  onChange={handleInputChange}/>
+                                            <button className="ml-2 bg-blue-500 text-white px-3 py-1  hover:bg-blue-600 rounded-2xl p-3"  onClick={() => {handleComments(index,data._id);setComment(!comment);}}>Post</button>
                                         </div>
+                                    
                                 </div>
                             </div>
                         ))}

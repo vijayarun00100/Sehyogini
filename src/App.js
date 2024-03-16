@@ -4,7 +4,7 @@ import Navigation from './navigation/navigation';
 import Signin from './signin/signin';
 function App() {
   return (
-    <div className="App no-scrollbar">
+    <div className="App">
       <Navigation />
       <Community />
       {/* <Signin /> */}
