@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logoDark from "../images/logoDark.svg";
+import { Link } from "react-router-dom";
+import Navigation from "../navigation/navigation";
+import SignIn from "../signin/signin";
 const SignUpPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,36 +15,53 @@ const SignUpPage = () => {
   const [employementStatus, setEmployementStatus] = useState("No");
   const [lookingFor, setLookingFor] = useState("");
   const [levelOfEducation, setLevelOfEducation] = useState("");
-  const [company , setCompany] = useState("");
-  const [role , setRole] = useState("");
-  useEffect(() => {
-    const signup = async () => {
-    try{
-        const response = fetch("https://sehyogini.onrender.com/api/signup", {
-          method: "post",
-          headers: "application/json",
-          body: {
-            name: name,
-            profilePic: '',
-            email: email,
-            password: password,
-            city: city,
-            state: state,
-            gender:gender,
-            phone: phone,
-            dob: dob,
-            acctype: "",
-            details: {
-              emplo: "",
-            },
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [userRecuiter, setuserRecuiter] = useState("");
+  const [organization, setorganization] = useState("");
+  const [organizationid, setorganizationid] = useState("");
+  const [whatudo, setwhatudo] = useState("");
+
+  const signup = async () => {
+    try {
+      let body = {
+        name: name,
+        phone: phone,
+        email: email,
+        dob: dob,
+        password: password,
+        gender: gender,
+        city: city,
+        acctype: userRecuiter,
+        state: state,
+        profilePic: "samplePic",
+        details: {
+          employementsStatus: employementStatus,
+          lookingFor: lookingFor,
+          levelOfEducation: levelOfEducation,
+          companyName: company,
+          companyRole: role,
+          organisationID: organizationid,
+        },
+      };
+      const response = await fetch(
+        "https://sehyogini.onrender.com/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        });
-    }catch(err){
-        console.log("error registering the user!");
+          body: JSON.stringify(body),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      window.location.href = "/signin";
+    } catch (err) {
+      console.log("error registering the user!", err);
     }
-    };
-  }, []);
-  
+  };
+
   return (
     <div className="bg-red-200 p-8 ">
       <div className="flex flex-col">
@@ -105,10 +125,10 @@ const SignUpPage = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="password"
+                htmlFor="gender"
                 className="block text-gray-700 font-semibold mb-2"
               >
-                Password
+                Gender
               </label>
               <input
                 type="text"
@@ -121,10 +141,10 @@ const SignUpPage = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="gender"
+                htmlFor="phone"
                 className="block text-gray-700 font-semibold mb-2"
               >
-                Gender
+                Phone
               </label>
               <input
                 type="tel"
@@ -183,7 +203,28 @@ const SignUpPage = () => {
                 required
               />
             </div>
+
             <div className="mb-4">
+              <label
+                htmlFor="user/recuiter"
+                className="block text-gray-700 font-semibold mb-2"
+              >
+                User/Recuiter
+              </label>
+              <select
+                id="userRecuiter"
+                className="border rounded-md py-2 px-3 w-full"
+                value={userRecuiter}
+                onChange={(e) => setuserRecuiter(e.target.value)}
+                required
+              >
+                <option value="user">User</option>
+                <option value="recuiter">Recuiter</option>
+              </select>
+            </div>
+
+            {userRecuiter !== "recuiter" && (
+              <div className="mb-4">
                 <label
                   htmlFor="employementStatus"
                   className="block text-gray-700 font-semibold mb-2"
@@ -200,7 +241,8 @@ const SignUpPage = () => {
                   <option value="No">No</option>
                   <option value="Yes">Yes</option>
                 </select>
-            </div>
+              </div>
+            )}
 
             {employementStatus === "Yes" && (
               <div className="mb-4">
@@ -238,40 +280,109 @@ const SignUpPage = () => {
               </div>
             )}
 
-            <div className="mb-4">
-              <label
-                htmlFor="lookingFor"
-                className="block text-gray-700 font-semibold mb-2"
-              >
-                Looking For
-              </label>
-              <input
-                type="text"
-                id="lookingFor"
-                className="border rounded-md py-2 px-3 w-full"
-                value={lookingFor}
-                onChange={(e) => setLookingFor(e.target.value)}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="levelOfEducation"
-                className="block text-gray-700 font-semibold mb-2"
-              >
-                Level of Education
-              </label>
-              <input
-                type="text"
-                id="levelOfEducation"
-                className="border rounded-md py-2 px-3 w-full"
-                value={levelOfEducation}
-                onChange={(e) => setLevelOfEducation(e.target.value)}
-              />
-            </div>
+            {userRecuiter !== "recuiter" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="lookingfor"
+                  className="block text-gray-700 font-semibold mb-2"
+                >
+                  Looking For
+                </label>
+                <select
+                  id="lookingfor"
+                  className="border rounded-md py-2 px-3 w-full"
+                  value={lookingFor}
+                  onChange={(e) => setLookingFor(e.target.value)}
+                  required
+                >
+                  <option value="Mentorship">Mentorship</option>
+                  <option value="Parenting">Parenting</option>
+                  <option value="Financeliteracy">Finance literacy</option>
+                  <option value="CareerDevelopment">Career Development</option>
+                  <option value="FinancialLiteracy">Financial Literacy</option>
+                </select>
+              </div>
+            )}
+
+            {userRecuiter === "recuiter" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="organizationname"
+                  className="block text-gray-700 font-semibold mb-2"
+                >
+                  Organization
+                </label>
+                <input
+                  type="text"
+                  id="oraganization"
+                  className="border rounded-md py-2 px-3 w-full"
+                  value={organization}
+                  onChange={(e) => setorganization(e.target.value)}
+                />
+              </div>
+            )}
+
+            {userRecuiter === "recuiter" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="organizationid"
+                  className="block text-gray-700 font-semibold mb-2"
+                >
+                  Organization ID
+                </label>
+                <input
+                  type="text"
+                  id="oraganizationid"
+                  className="border rounded-md py-2 px-3 w-full"
+                  value={organizationid}
+                  onChange={(e) => setorganizationid(e.target.value)}
+                />
+              </div>
+            )}
+
+            {userRecuiter === "recuiter" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="whatudo"
+                  className="block text-gray-700 font-semibold mb-2"
+                >
+                  What you do
+                </label>
+                <input
+                  type="text"
+                  id="whatudo"
+                  className="border rounded-md py-2 px-3 w-full"
+                  value={whatudo}
+                  onChange={(e) => setwhatudo(e.target.value)}
+                />
+              </div>
+            )}
+
+            {userRecuiter !== "recuiter" && (
+              <div className="mb-4">
+                <label
+                  htmlFor="levelOfEducation"
+                  className="block text-gray-700 font-semibold mb-2"
+                >
+                  Level of Education
+                </label>
+                <input
+                  type="text"
+                  id="levelOfEducation"
+                  className="border rounded-md py-2 px-3 w-full"
+                  value={levelOfEducation}
+                  onChange={(e) => setLevelOfEducation(e.target.value)}
+                />
+              </div>
+            )}
             <div>
               <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => {
+                  signup();
+                  <Link>to={<SignIn />}</Link>;
+                }}
               >
                 Sign Up
               </button>

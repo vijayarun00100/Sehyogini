@@ -6,7 +6,7 @@ const LoadingSkeleton = () => {
   const shimmerCards = Array.from({ length: 6 }, (_, index) => (
     <div
       key={index}
-      className="transition-transform transform bg-gray-200 animate-pulse hover:scale-105 mt-20 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      className="transition-transform transform bg-gray-200 animate-pulse hover:scale-105 mt-20 border border-gray-200 rounded-lg shadow"
     >
       <div className="flex flex-row p-5">
         <div className="w-10 h-10 bg-gray-300 rounded-full"></div>

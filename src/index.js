@@ -9,6 +9,7 @@ import Opportunities from "./community/opportunities";
 import PodcastPage from "./community/podcasts";
 import Signin from "./signin/signin";
 import SignUp from "./signup/signup";
+import User from "./user/user";
 import "./App.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,6 +23,7 @@ root.render(
           <Route path="/podcasts" element={<PodcastPage />} />
           <Route path="/signIn" element={<Signin />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </div>
     </Router>
