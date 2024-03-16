@@ -95,7 +95,9 @@ const Community = () => {
     const [like, setLike] = useState(false);
     const [latest , setLatest] = useState(false);
     const [comment , setComment] = useState(false);
+    const [post , setpost ] = useState(false);
     const [commnet_content, setComment_content] = useState('');
+    const [post_content , setpost_content] = useState('');  
 
     useEffect(() => {
         const fetchData = async () => {
@@ -117,7 +119,7 @@ const Community = () => {
         };
 
         fetchData();
-    }, [like,latest , comment]);
+    }, [like,latest , comment,post]);
 
 
     const toggleComments = (index) => {
@@ -135,7 +137,14 @@ const Community = () => {
 
     const handleInputChange = (event) => {
         setComment_content(event.target.value);
+        
     };
+
+    const updatepostcontent = (event) => {
+        setpost_content(event.target.value);
+        console.log("post:",post_content);
+    };
+
 
     
     const handleLike = async (index,id) => {
@@ -189,6 +198,33 @@ const Community = () => {
         }
     };
 
+    const handlepost = async () => {
+        const newPosts = [...posts];
+
+        try {
+            const response = await fetch('https://sehyogini.onrender.com/api/createPost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    author: 'Gopal',
+                    title:'second post',
+                    authorID:'65f46f485dff06b2670d8f7d',
+                    content:post_content,
+                    comments:[],
+                    likes:[]
+                })
+            });
+            console.log("i ran");
+            if (!response.ok) {
+                throw new Error('Failed to update 1 count');
+            }
+        } catch (error) {
+            console.error('Error updating', error);
+        }
+    };
+
     return (
         <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className=" w-full h-full flex relative">
@@ -232,7 +268,13 @@ const Community = () => {
                     <h1 className="text-2xl text-reqtext">POSTS</h1>
                     <div className=" bg-slate-400/10 w-full h-44 rounded-xl mt-6">
                         <div>
-                            <textarea type="text" className="bg-slate-200/10 w-[93%] h-36 rounded-xl mt-4 ml-8 border-none p-3" placeholder="start typing ... " />
+                            {/*  */}
+                            <input type="text" className="bg-slate-200/10 w-[93%] h-36 rounded-xl mt-4 ml-8 border-none p-3" placeholder="start typing ... " onChange={updatepostcontent}/>
+                            <div className="flex justify-center items-center">
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={() => {handlepost();setpost(!post);}}>
+                              Button
+                            </button>
+                            </div>
                         </div>  
                     </div>
                     <h1 className=" fixed right-36 top-24 text-reqtext text-2xl">Featured Blogs</h1>
