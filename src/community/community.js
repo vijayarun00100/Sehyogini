@@ -159,7 +159,6 @@ const Community = (props) => {
 
     const updatepostcontent = (event) => {
         setpost_content(event.target.value);
-        console.log("post:",post_content);
     };
 
 
@@ -192,7 +191,6 @@ const Community = (props) => {
 
 
     const handleComments = async (index,id) => {
-        const newPosts = [...posts];
 
         try {
             const response = await fetch('https://sehyogini.onrender.com/api/do-comment', {
@@ -216,7 +214,6 @@ const Community = (props) => {
     };
 
     const handlepost = async () => {
-        const newPosts = [...posts];
 
         try {
             const response = await fetch('https://sehyogini.onrender.com/api/createPost', {
@@ -226,13 +223,17 @@ const Community = (props) => {
                 },
                 body: JSON.stringify({ 
                     author: loggedusername,
-                    title:'second post',
+                    title:"",
                     authorID:loggeduserid,
                     content:post_content,
                     comments:[],
                     likes:[]
                 })
-            });
+            }).then(res => res.json()).then(data => JSON.stringify(data)).then(value =>{
+                if(!value.isposted){
+                    alert("absuvie content");
+                }
+            })
             console.log("i ran");
             if (!response.ok) {
                 throw new Error('Failed to update 1 count');
@@ -287,7 +288,6 @@ const Community = (props) => {
                     <h1 className="text-2xl text-reqtext">POSTS</h1>
                     <div className=" bg-slate-400/10 w-full h-44 rounded-xl mt-6">
                         <div>
-                            {/*  */}
                             <input type="text" className="bg-slate-200/10 w-[93%] h-36 rounded-xl mt-4 ml-8 border-none p-3" placeholder="start typing ... " onChange={updatepostcontent}/>
                             <div className="flex justify-center items-center">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={() => {handlepost();setpost(!post);}}>
