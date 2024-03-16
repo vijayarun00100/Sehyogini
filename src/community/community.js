@@ -15,10 +15,10 @@ import { GoComment } from "react-icons/go";
 import { FcLikePlaceholder } from "react-icons/fc"; //before like 
 import { FcLike } from "react-icons/fc"; //after like
 import Navigation from '../navigation/navigation';
-
+import toast, { Toaster } from 'react-hot-toast';
 const icons = [
     {
-        title:'Search',
+        title:'Selrch',
         icon:CiSearch
     },
     {
@@ -203,13 +203,22 @@ const Community = (props) => {
                     post: id,
                     comment:commnet_content
                 })
-            });
-            commnet_content= '';
-            if (!response.ok) {
-                throw new Error('Failed to update comment count');
-            }
+            })
+            const data = await response.json();
+        
+        
+        if(!data){
+            toast.error("Abusive Content detected !!!");
+        } else {
+            toast.success('Successfully added')
+        }
+        
+        // console.log("i ran");
+        if (!response.ok) {
+            throw new Error('Failed to update 1 count');
+        }
         } catch (error) {
-            console.error('Error updating comments', error);
+            console.error('Error updating', error);
         }
     };
 
@@ -229,12 +238,16 @@ const Community = (props) => {
                     comments:[],
                     likes:[]
                 })
-            }).then(res => res.json()).then(data => JSON.stringify(data)).then(value =>{
-                if(!value.isposted){
-                    alert("absuvie content");
-                }
             })
-            console.log("i ran");
+            
+            const data = await response.json();
+            console.log(data.isposted);
+            if(!data.isposted){
+                toast.error("Abusive Content detected !!!");
+            } else {
+                toast.success('Successfully added');
+            }
+            
             if (!response.ok) {
                 throw new Error('Failed to update 1 count');
             }
@@ -245,6 +258,7 @@ const Community = (props) => {
 
     return (
         <>
+        <div><Toaster/></div>
         <Navigation />
         <div className="w-full h-screen flex justify-start items-start relative bg-slate-100/100 text-black">
             <div className=" w-full h-full flex relative">
