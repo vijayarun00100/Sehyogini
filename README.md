@@ -35,12 +35,12 @@ To get started with Project Single Mother:
 
 1. Clone the repository to your local machine.
    ```bash
-   git clone https://github.com/yourusername/project-single-mother.git
+   git clone https://github.com/vijayarun00100/testReo
    ```
 
 2. Navigate to the project directory.
    ```bash
-   cd project-single-mother
+   cd project-test-Reo
    ```
 
 3. Install dependencies by running the following command:
@@ -61,10 +61,10 @@ To get started with Project Single Mother:
 
 Meet the amazing contributors who have contributed to this project:
 
-1. Alice Smith ([@alice_smith](https://github.com/alice_smith))
-2. Bob Johnson ([@bob_johnson](https://github.com/bob_johnson))
-3. Carol Williams ([@carol_williams](https://github.com/carol_williams))
-4. David Brown ([@david_brown](https://github.com/david_brown))
+1. Vijay Arun ([@alice_smith](https://github.com/vijayarun00100))
+2. Ayush Tiwari ([@bob_johnson](https://github.com/ayushtiw))
+3. Yash Sharma ([@carol_williams](https://github.com/thedevyash))
+4. Aditya Shandilya ([@david_brown](https://github.com/adityagaz))
 
 ## Contributing 🤝
 
