@@ -1,7 +1,6 @@
 import { type } from "@testing-library/user-event/dist/type";
-import Navigation from '../navigation/navigation';
+import Navigation from "../navigation/navigation";
 import React, { useState, useEffect } from "react";
-
 
 const LoadingSkeleton = () => {
   const shimmerCards = Array.from({ length: 6 }, (_, index) => (
@@ -38,7 +37,7 @@ const LoadingSkeleton = () => {
 const Opportunities = () => {
   const [scheme, setScheme] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [ngo,setNgo] = useState([]);
+  const [ngo, setNgo] = useState([]);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -73,27 +72,27 @@ const Opportunities = () => {
 
   return (
     <div>
-        <Navigation />
+      <Navigation />
       {console.log(ngo)};
       {loading ? (
         <LoadingSkeleton />
       ) : (
         <div className="container w-full mx-auto mt-10">
           <div className="header mt-24">
-          <h1 class="mt-10
-           text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Government{" "}
-            <mark class="px-2 text-white bg-theme rounded dark:bg-blue-500">
-              Schemes
-            </mark>{" "}
-            for Single Mother Community
-          </h1>
+            <h1
+              class="mt-10
+           text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl "
+            >
+              Government{" "}
+              <mark class="px-2 text-white bg-theme rounded ">Schemes</mark> for
+              Single Mother Community
+            </h1>
           </div>
           <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
             {scheme.map((data, index) => (
               <div
                 key={index}
-                className="transition-transform transform hover:scale-105 mt-20 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="transition-transform transform hover:scale-105 mt-20 bg-white border border-gray-200 rounded-lg shadow "
               >
                 <div className="flex flex-row p-5">
                   <img
@@ -115,16 +114,16 @@ const Opportunities = () => {
                   />
                   <div className="mt-2 pt-2 pb-2 mb-2 pd-2">
                     <a href="#">
-                      <h5 className="pt-2 pb-2 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <h5 className="pt-2 pb-2 mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                         {data.scheme_name}
                       </h5>
                     </a>
-                    <p className="pt-2 pb-2 pd-2 mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p className="pt-2 pb-2 pd-2 mb-3 font-normal text-gray-700 ">
                       {data.scheme_description}
                     </p>
                     <a
                       href={data.url}
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-theme rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-theme rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300"
                     >
                       Details
                       <svg
@@ -148,19 +147,18 @@ const Opportunities = () => {
               </div>
             ))}
           </div>
-          <h1 class="mt-20
-           text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            NGO{" "}
-            <mark class="px-2 text-white bg-theme rounded dark:bg-blue-500">
-              Workshops
-            </mark>{" "}
+          <h1
+            class="mt-20
+           text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl "
+          >
+            NGO <mark class="px-2 text-white bg-theme rounded ">Workshops</mark>{" "}
             for Single Mother Community
           </h1>
           <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
             {ngo.map((data, index) => (
               <div
                 key={index}
-                className="transition-transform transform hover:scale-105 mt-20 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="transition-transform transform hover:scale-105 mt-20 bg-white border border-gray-200 rounded-lg shadow "
               >
                 <div className="flex flex-row p-5">
                   <img
@@ -182,16 +180,16 @@ const Opportunities = () => {
                   />
                   <div className="mt-2 pt-2 pb-2 mb-2 pd-2">
                     <a href="#">
-                      <h5 className="pt-2 pb-2 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <h5 className="pt-2 pb-2 mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                         {data.scheme_name}
                       </h5>
                     </a>
-                    <p className="pt-2 pb-2 pd-2 mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p className="pt-2 pb-2 pd-2 mb-3 font-normal text-gray-700 ">
                       {data.workshop_description}
                     </p>
                     <a
                       href={data.url}
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-theme rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-theme rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 "
                     >
                       Details
                       <svg
@@ -216,10 +214,7 @@ const Opportunities = () => {
             ))}
           </div>
         </div>
-        
-        
       )}
-      
     </div>
   );
 };

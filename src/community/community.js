@@ -117,11 +117,12 @@ const Community = (props) => {
                 if (!Array.isArray(posts)) {
                     throw new Error('Invalid data format: posts is not an array');
                 }
-                // setLike(like => !like)
                 setPosts(posts.map(post => ({ ...post, liked: false })));
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
+
+
         };
         fetchData();
     }, [like,latest , comment,post]);
