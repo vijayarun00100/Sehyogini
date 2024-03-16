@@ -69,11 +69,11 @@ const SignUpPage = () => {
           <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
         </div>
         <div className="flex justify-center items-center">
-          <img src={logoDark} alt="head " className="w-40 mt-1 " />
+          <img src={logoDark} alt="head " className="w-40 mt-1 mb-10" />
         </div>
       </div>
-      <div className="container mx-auto">
-        <div className="bg-white rounded-md p-8">
+      <div className="container mx-auto justify-center items-center flex">
+        <div className="bg-white rounded-md p-8 w-[70%]">
           <div>
             <div className="mb-4">
               <label
@@ -378,7 +378,7 @@ const SignUpPage = () => {
             <div>
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-theme hover:bg-theme/80 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
                   signup();
                   <Link>to={<SignIn />}</Link>;

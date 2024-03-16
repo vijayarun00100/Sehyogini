@@ -8,7 +8,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import { HiMenuAlt2 } from "react-icons/hi";
-import Logo from "../images/vector.svg";
+import Logo from "../images/logoDark.svg";
 import User from "../images/user.png";
 import { GoComment } from "react-icons/go";
 import { FcLikePlaceholder } from "react-icons/fc"; //before like

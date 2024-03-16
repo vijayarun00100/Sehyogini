@@ -10,6 +10,7 @@ import PodcastPage from "./community/podcasts";
 import Signin from "./signin/signin";
 import SignUp from "./signup/signup";
 import User from "./user/user";
+import Landing from "./landing/landing"
 import "./App.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,6 +25,7 @@ root.render(
           <Route path="/signIn" element={<Signin />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/user" element={<User />} />
+          <Route path="/landing" element={<Landing />} />
         </Routes>
       </div>
     </Router>
