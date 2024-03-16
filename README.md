@@ -5,7 +5,7 @@ Welcome to Project Single Mother, a community-driven platform dedicated to empow
 ## Features 🚀
 
 ### 1. Community
-Join our vibrant community of single mothers where you can share experiences, seek advice, and build meaningful connections with like-minded individuals.
+Join our vibrant community of single mothers where you can share experiences, seek advice, and build meaningful connections with like-minded individuals for better and strong future.
 
 ### 2. Job Opportunities 💼
 Explore job opportunities tailored for single mothers. We understand the unique challenges faced by single moms in the workforce, and we strive to provide job listings that accommodate their needs and schedules.
@@ -14,7 +14,7 @@ Explore job opportunities tailored for single mothers. We understand the unique 
 Tune in to our inspiring podcast series featuring stories of resilience, empowerment, and success from single mothers around the globe. Get motivated and uplifted as you listen to real-life experiences and valuable insights.
 
 ### 4. Multilingual Text Classification 🌐
-We leverage advanced technology for multilingual text classification, allowing us to analyze and categorize text data in multiple languages. This feature enhances communication and accessibility for our diverse community of users.
+We leverage advanced technology for multilingual text classification, allowing us to analyze and categorize text data in multiple languages. This feature enhances security,moderation and accessibility for our users.
 
 ### 5. Sentiment Detection from Voice 🔊
 Using state-of-the-art sentiment detection algorithms, we can analyze the emotional tone and sentiment conveyed through voice recordings. This innovative feature helps us better understand and support our community members' emotional needs.
