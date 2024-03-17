@@ -3,15 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navigation from "./navigation/navigation";
 import Community from "./community/community";
 import Opportunities from "./community/opportunities";
 import PodcastPage from "./community/podcasts";
 import Signin from "./signin/signin";
 import SignUp from "./signup/signup";
 import User from "./user/user";
-import Landing from "./landing/landing"
+import Landing from "./landing/landing";
+import Jobs from "./jobs/jobs";
 import "./App.css";
+import "./user/user";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,8 @@ root.render(
           <Route path="/signup" element={<SignUp />} />
           <Route path="/user" element={<User />} />
           <Route path="/landing" element={<Landing />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </div>
     </Router>

@@ -18,6 +18,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { IoPersonSharp } from "react-icons/io5";
 import { GrInherit } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import { MdWorkOutline } from "react-icons/md";
 
 const icons = [
   {
@@ -35,6 +36,10 @@ const icons = [
   {
     title: "Community",
     icon: RiGroupLine,
+  },
+  {
+    title: "Jobs",
+    icon: MdWorkOutline,
   },
 ];
 
