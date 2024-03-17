@@ -1,4 +1,4 @@
-# Project Single Mother 🌟
+# Project Sehyogini 🌟
 
 Welcome to Project Single Mother, a community-driven platform dedicated to empowering single mothers worldwide. This project embraces the spirit of Gen Z by providing a supportive space for single mothers to connect, explore job opportunities, listen to empowering podcasts, and utilize cutting-edge technology for multilingual text classification and sentiment detection from voice.
 
