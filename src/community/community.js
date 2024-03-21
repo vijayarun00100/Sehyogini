@@ -22,7 +22,7 @@ import { MdWorkOutline } from "react-icons/md";
 
 const icons = [
   {
-    title: "Opportunities1",
+    title: "Opportunities12",
     icon: GrInherit,
   },
   {
